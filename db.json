@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "color": "red",
+      "name": "Lastra",
+      "photo": "typicode"
+    },
+    {
+      "id": 2,
+      "color": "red",
+      "name": "Lastra",
+      "photo": "typicode"
+    },
+    {
+      "id": 3,
+      "color": "red",
+      "name": "Lastra",
+      "photo": "typicode"
+    },
+    {
+      "id": 4,
+      "color": "black",
+      "name": "Lastra",
+      "photo": "typicode"
+    },
+    {
+      "id": 5,
+      "color": "black",
+      "name": "Lastra",
+      "photo": "typicode"
+    },
+    {
+      "id": 6,
+      "color": "black",
+      "name": "Lastra",
+      "photo": "typicode"
+    }
+  ]
+}
