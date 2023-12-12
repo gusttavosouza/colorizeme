@@ -29,23 +29,20 @@ export default function CameraComponent() {
   }
 
   async function takePicture () {
-    console.log("FOIII")
     if(cameraRef.current !== null){
       const photo: CameraCapturedPicture = await cameraRef?.current.takePictureAsync();
       setCapturedPhoto(photo);
       setWasTakePhoto(true)
-      console.log(photo);
-      // navigation.navigate({"name": "Product"} as never)
     }
   }
 
   function useImage() {
+    setCapturedPhoto({} as CameraCapturedPicture)
+    setWasTakePhoto(false)
     navigation.navigate({"name": "Product"} as never)
   }
 
   if(!permission?.granted){
-    console.log(permission?.granted)
-    console.log('Entrouu')
     return;
   }
 
