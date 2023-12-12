@@ -5,7 +5,7 @@ type Product = {
   photo: string 
 }
 
-export const products: Product[]= [
+const bege: Product[]= [
     {
       id: 6,
       color: "bage",
@@ -29,23 +29,37 @@ export const products: Product[]= [
       color: "bage",
       name: "TERRACOTTA MURO TRAMONTO",
       photo: "https://imagens.portobello.com.br/unsafe/884x979/https://www.portobello.com.br/data/products/related/terracotta-muro-tramonto-07x26-mate_15139.jpg?ts=1611794604"
-    },
-    {
-      id: 10,
-      color: "red",
-      name: "HORIZONTES JAIPUR",
-      photo: "https://imagens.portobello.com.br/unsafe/fit-in/884x884/https://www.portobello.com.br/data/products/related/chelsea-dark-red-07x75-nat_32923.jpg?ts=1590495818"
-    },
-    {
-      id: 11,
-      color: "black",
-      name: "ARTEMATICA MINI BASILICO",
-      photo: "https://imagens.portobello.com.br/unsafe/884x979/https://www.portobello.com.br/data/products/zoom/artematica-mini-basilico-15-5x15-5-mate-1_49245.jpg?ts=1664825508"
-    },
-    {
-      id: 12,
-      color: "black",
-      name: "BARLAVENTO LAGOON",
-      photo: "https://imagens.portobello.com.br/unsafe/884x979/https://www.portobello.com.br/data/products/related/barlavento-lagoon-14-5x14-5-ext-1_41385.jpg?ts=1613739588"
     }
-  ]
+]
+
+const black: Product[]= [
+  {
+    id: 10,
+    color: "black",
+    name: "HORIZONTES JAIPUR",
+    photo: "https://imagens.portobello.com.br/unsafe/fit-in/884x884/https://www.portobello.com.br/data/products/related/chelsea-dark-red-07x75-nat_32923.jpg?ts=1590495818"
+  },
+  {
+    id: 11,
+    color: "black",
+    name: "ARTEMATICA MINI BASILICO",
+    photo: "https://imagens.portobello.com.br/unsafe/884x979/https://www.portobello.com.br/data/products/zoom/artematica-mini-basilico-15-5x15-5-mate-1_49245.jpg?ts=1664825508"
+  },
+  {
+    id: 12,
+    color: "black",
+    name: "BARLAVENTO LAGOON",
+    photo: "https://imagens.portobello.com.br/unsafe/884x979/https://www.portobello.com.br/data/products/related/barlavento-lagoon-14-5x14-5-ext-1_41385.jpg?ts=1613739588"
+  }
+]
+
+export function returnColor(color: string){
+  switch(color){
+    case 'bege':
+      return bege;
+    case 'black':
+      return black
+    default: 
+      return bege;
+  }
+}

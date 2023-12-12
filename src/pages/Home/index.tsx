@@ -5,6 +5,8 @@ import { styles } from "./styles";
 
 import logo from '../../assets/teste.png';
 import live from '../../assets/live.png';
+import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home() {
   const navigation = useNavigation();
@@ -12,6 +14,18 @@ export default function Home() {
   function redirectCamera() {
     navigation.navigate({"name": "Camera"} as never)
   }
+  useEffect(() => {
+    initializeData()
+  }, [])
+
+  
+  const initializeData = async () => {
+    try {
+      await AsyncStorage.setItem('color', 'bege');
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error);
+    }
+  };
 
   return (
     <View style={styles.container}>

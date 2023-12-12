@@ -1,17 +1,40 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity } from "react-native";
-import { products } from "./utils";
+import { returnColor } from "./utils";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getColor } from "./getColor";
 
 export default function Product() {
+  const [color, setColor] = useState<string | null>();
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await AsyncStorage.getItem('color');
+        setColor(data);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
+    };
+    loadData();
+  }, []);
+
   const navigation = useNavigation();
-  const analogas = ["#E39E49", "#E3C549", "#E3B249", "#E38349", "#E6DE7E"]
-  const monocromatico = ["#B0955B", "#7D725A", "#E3B249", "#4A4741", "#332E23"]
-  const sombras = ["#BF963D", "#967630", "#E3B249", "#6E5623", "#453616"]
+  const {analogas, monocromatico, sombras} = getColor(color || 'bege');
+
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem('color', color === 'bege' ? 'black' : 'bege');
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error);
+    }
+  };
 
   function goBack(){
+    saveData()
     navigation.navigate({"name": "Camera"} as never)
   }
 
@@ -28,23 +51,23 @@ export default function Product() {
         <Text style={styles.subtitle}>Paletas</Text>
         <View style={styles.paleta}>
           {analogas.map(item => (
-            <View style={{ ...styles.paletaItem, backgroundColor: `${item}` }} />
+            <View style={{ ...styles.paletaItem, backgroundColor: `${item}` }} key={`${item}`} />
           ))}
         </View>
         <View style={styles.paleta}>
           {monocromatico.map(item => (
-            <View style={{ ...styles.paletaItem, backgroundColor: `${item}` }} />
+            <View style={{ ...styles.paletaItem, backgroundColor: `${item}` }} key={`${item}`} />
           ))}
         </View>
         <View style={styles.paleta}>
           {sombras.map(item => (
-            <View style={{ ...styles.paletaItem, backgroundColor: `${item}` }} />
+            <View style={{ ...styles.paletaItem, backgroundColor: `${item}` }}  key={`${item}`}   />
           ))}
         </View>
       </View>
       <View style={styles.products}>
         <Text style={styles.title}>Produtos</Text>
-        {products.map(product => (
+        {returnColor(color || 'bege').map(product => (
           <View style={styles.product} key={product.id}>
             <Text style={styles.productName}>{product.name}</Text>
             <Image source={{ uri: product.photo }} style={styles.productImage} />
